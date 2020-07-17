@@ -13,6 +13,10 @@ body {
      font-family: Kyokasho;
 }
 
+.hidden {
+     display: none;
+}
+
 #menu {
      background-color: #333;
      overflow: auto;
@@ -40,6 +44,7 @@ body {
      line-height: 2.3;
      padding: 100px;
 }
+
 ruby {
      margin-bottom: 0.55em;
      display: inline-table;
@@ -47,11 +52,13 @@ ruby {
      vertical-align: bottom;
      line-height: 2.6;
 }
+
 ruby rb {
      display: table-row;
      position: relative;
      line-height: 1.2;
 }
+
 ruby rt {
      display: table-header-group;
      line-height: 1.8;
