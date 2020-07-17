@@ -3,6 +3,10 @@
       src: url('UDDigiKyokashoN-R.ttf');
 } 
 
+html {
+     background-color: black;
+}
+
 body {
      margin: 0px;
      font-size: 100px;
