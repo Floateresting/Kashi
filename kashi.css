@@ -1,43 +1,59 @@
-:root {
-     --font: 100px;
-}
-
 @font-face { 
       font-family: Kyokasho; 
       src: url('UDDigiKyokashoN-R.ttf');
 } 
 
+body {
+     margin: 0px;
+     font-size: 100px;
+     font-family: Kyokasho;
+}
+
+#menu {
+     background-color: #333;
+     overflow: auto;
+     white-space: nowrap;
+}
+
+#menu a{
+     display: inline-block;
+     color: white;
+     text-align: center;
+     text-decoration: none;
+     padding: 10px 0.25em;
+}
+
+#menu a:hover{
+     background-color: #777;
+}
+
 #lyric {
      position: absolute;
-     font-family: Kyokasho;
      white-space: nowrap;
      background-color: #181a1b;
      color: #c8c4bd;
-     margin: 0px;
      letter-spacing: 1px;
      line-height: 2.3;
      padding: 100px;
-     font-size: var(--font);
 }
-
-.ruby {
+ruby {
      margin-bottom: 0.55em;
      display: inline-table;
      position: relative;
      vertical-align: bottom;
      line-height: 2.6;
 }
-.ruby .rb {
+ruby rb {
      display: table-row;
      position: relative;
      line-height: 1.2;
 }
-.ruby .rt {
+ruby rt {
      display: table-header-group;
      line-height: 1.8;
      color: #999;
      white-space: nowrap;
      text-align: center;
      letter-spacing: -0.001em;
-     font-size: calc(var(--font)/2);
+     font-size: 0.5em;
 }
