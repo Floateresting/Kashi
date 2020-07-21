@@ -46,6 +46,7 @@ ruby rt {
 
 #menu {
      white-space: nowrap;
+     overflow: auto;
 }
 
 #menu a{
@@ -65,9 +66,9 @@ ruby rt {
      white-space: nowrap;
      background-color: var(--lrc-bg);
      color: #c8c4bd;
-     letter-spacing: 1px;
      line-height: 2.3;
      padding: 0.5em;
+     min-width: 100%;
 }
 
 #switch{
