@@ -70,5 +70,4 @@ window.onload = function() {
 
     // add event for switching rb and rt
     $('#switch').click(switchRuby);
-    $('body').keydown(switchRuby);
 }
