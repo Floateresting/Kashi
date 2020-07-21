@@ -7,16 +7,9 @@
       src: url('UDDigiKyokashoN-R.ttf');
 } 
 
+
 html {
      background-color: #111;
-}
-
-.kanji-on-furigana ruby {
-     padding: 0 10px;
-}
-
-.kanji-on-furigana rb {
-     text-decoration: underline;
 }
 
 body {
@@ -25,9 +18,31 @@ body {
      font-family: Kyokasho;
 }
 
-.hidden {
-     color: var(--lrc-bg);
+
+ruby {
+     margin-bottom: 0.55em;
+     display: inline-table;
+     position: relative;
+     vertical-align: bottom;
+     line-height: 2.6;
 }
+
+ruby rb {
+     display: table-row;
+     position: relative;
+     line-height: 1.2;
+}
+
+ruby rt {
+     display: table-header-group;
+     line-height: 1.8;
+     color: #999;
+     white-space: nowrap;
+     text-align: center;
+     letter-spacing: -0.001em;
+     font-size: 0.5em;
+}
+
 
 #menu {
      white-space: nowrap;
@@ -55,26 +70,26 @@ body {
      padding: 0.5em;
 }
 
-ruby {
-     margin-bottom: 0.55em;
-     display: inline-table;
-     position: relative;
-     vertical-align: bottom;
-     line-height: 2.6;
+#switch{
+     position: fixed;
+     color: dimgray;
+     right: 0px;
+     bottom: 0px;
+     margin: 10px;
+     user-select: none;
 }
 
-ruby rb {
-     display: table-row;
-     position: relative;
-     line-height: 1.2;
+
+.kanji-on-furigana ruby {
+     padding: 0 10px;
 }
 
-ruby rt {
-     display: table-header-group;
-     line-height: 1.8;
-     color: #999;
-     white-space: nowrap;
-     text-align: center;
-     letter-spacing: -0.001em;
-     font-size: 0.5em;
+.kanji-on-furigana rb {
+     text-decoration: underline;
 }
+
+
+.hidden {
+     color: var(--lrc-bg);
+}
+

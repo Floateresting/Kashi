@@ -1,5 +1,14 @@
 var $lyric = $('#lyric');
 
+function switchRuby(){
+    $lyric[0].classList.toggle('kanji-on-furigana');
+    $.get('lyrics/'+window.location.hash.slice(1), function(lyric){
+        // if html contains 'ruby', generate new html without kanji
+        changeLrc(lyric, !$lyric[0]
+            .classList.contains('kanji-on-furigana'));
+    });
+}
+
 function changeLrc(text, kanji_as_rb=true) {
     // add '<br>' at end of each verse
     text = text.replace(/\n/g, '<br>\n');
@@ -49,22 +58,17 @@ window.onload = function() {
                             });
                         }
                     })
-                    /*.mousedown(function(){
-                        timer = window.setTimeout(function(){
-                            longpress = true;
-                            $lyric[0].classList.toggle('kanji-on-furigana');
-                            $.get('lyrics/'+window.location.hash.slice(1), function(lyric){
-                                // if html contains 'ruby', generate new html without kanji
-                                changeLrc(lyric, !$lyric[0]
-                                    .classList.contains('kanji-on-furigana'));
-                            });
-                        },delay);
-                    })*/
             );
         }
+    
         // if url contains hash (preselected lyric)
         if(window.location.hash){
             $(`a[href=${window.location.hash}]`).click();   
         }
 	});
+
+
+    // add event for switching rb and rt
+    $('#switch').click(switchRuby);
+    $('body').keydown(switchRuby);
 }
