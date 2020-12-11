@@ -92,5 +92,6 @@ ruby rt {
 
 .hidden {
      color: var(--lrc-bg);
+     user-select: none;
 }
 
