@@ -71,7 +71,7 @@ ruby rt {
      min-width: 100%;
 }
 
-#switch{
+#control{
      position: fixed;
      color: dimgray;
      right: 0px;

@@ -1,15 +1,21 @@
 "use strict";
 var HTMLClass;
 (function (HTMLClass) {
-    HTMLClass["Selected"] = "selected";
     HTMLClass["NoRT"] = "no-rt";
     HTMLClass["Hidden"] = "hidden";
     HTMLClass["Underline"] = "underline";
 })(HTMLClass || (HTMLClass = {}));
+var switches = {
+    '⇅': '⇵',
+    '⇵': '⇅',
+};
+var toggles = {
+    '👁': 'ー',
+    'ー': '👁',
+};
 var dir = 'lyrics/';
 var $toc = $('#toc');
 var $lrc = $('#lrc');
-var $swith = $('#switch');
 /**
  * create an <a> element for the table of contents
  * @param file path of the .lrc file
@@ -19,24 +25,7 @@ function toc(file, title) {
     return $('<a></a>')
         .attr('href', "#" + title)
         .text(title)
-        .on('click', { 'file': file }, click);
-}
-/**
- * toggle furigana or change lyric
- * @param this
- * @param event
- */
-function click(event) {
-    // if clicked on selected song
-    if (this.classList.contains(HTMLClass.Selected)) {
-        $('rt').toggleClass(HTMLClass.Hidden);
-    }
-    else {
-        $('a').attr('class', '');
-        this.classList.add(HTMLClass.Selected);
-        $lrc.attr('class', '');
-        $.get(dir + event.data.file, function (l) { return lrc(l); });
-    }
+        .on('click', function () { return $.get(dir + file, function (l) { return lrc(l); }); });
 }
 function lrc(l) {
     // create ruby
@@ -52,12 +41,26 @@ $.getJSON(dir + 'data.json').done(function (data) {
         $toc.prepend(toc(file, title));
     }
 });
-$swith.on('click', function () { return $('ruby').each(function () {
-    var $this = $(this);
-    // switch the texts
-    var _a = this.innerText.split('\n'), rb = _a[0], rt = _a[1];
-    // rb will be underlined when rb is furigana
-    // 'rb' and 'rt' stand for 'ruby base' and 'ruby top' ?
-    $this.find('rb').text(rt).toggleClass(HTMLClass.Underline);
-    $this.find('rt').text(rb);
-}); });
+$('#toggle')
+    .text(Object.keys(toggles)[0])
+    .on('click', function () {
+    // switch the symbol
+    this.innerText = toggles[this.innerText];
+    // toggle rt's visibility
+    $('rt').toggleClass(HTMLClass.Hidden);
+});
+$('#switch')
+    .text(Object.keys(switches)[0])
+    .on('click', function () {
+    // switch the symbol
+    this.innerText = switches[this.innerText];
+    $('ruby').each(function () {
+        var $this = $(this);
+        // switch the texts
+        var _a = this.innerText.split('\n'), rb = _a[0], rt = _a[1];
+        // rb will be underlined when rb is furigana
+        // 'rb' and 'rt' stand for 'ruby base' and 'ruby top' ?
+        $this.find('rb').text(rt).toggleClass(HTMLClass.Underline);
+        $this.find('rt').text(rb);
+    });
+});
