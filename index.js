@@ -4,6 +4,7 @@ var HTMLClass;
     HTMLClass["Selected"] = "selected";
     HTMLClass["NoRT"] = "no-rt";
     HTMLClass["Hidden"] = "hidden";
+    HTMLClass["Underline"] = "underline";
 })(HTMLClass || (HTMLClass = {}));
 var dir = 'lyrics/';
 var $toc = $('#toc');
@@ -52,6 +53,11 @@ $.getJSON(dir + 'data.json').done(function (data) {
     }
 });
 $swith.on('click', function () { return $('ruby').each(function () {
-    // switch <rb> and <rt> (only the tag names, not innerText)
-    this.innerHTML = this.innerHTML.replace(/<(r[bt]).*>(\S+)<\/r[bt]><(r[bt]).*>(\S+)<\/r[bt]>/, '<$3>$2</$3><$1>$4</$1>');
+    var $this = $(this);
+    // switch the texts
+    var _a = this.innerText.split('\n'), rb = _a[0], rt = _a[1];
+    // rb will be underlined when rb is furigana
+    // 'rb' and 'rt' stand for 'ruby base' and 'ruby top' ?
+    $this.find('rb').text(rt).toggleClass(HTMLClass.Underline);
+    $this.find('rt').text(rb);
 }); });

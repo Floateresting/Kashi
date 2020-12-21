@@ -2,6 +2,7 @@ enum HTMLClass {
     Selected = 'selected',
     NoRT = 'no-rt',
     Hidden = 'hidden',
+    Underline = 'underline',
 }
 
 let dir = 'lyrics/'
@@ -56,9 +57,11 @@ $.getJSON(dir + 'data.json').done(function (data) {
 });
 
 $swith.on('click', () => $('ruby').each(function () {
-    // switch <rb> and <rt> (only the tag names, not innerText)
-    this.innerHTML = this.innerHTML.replace(
-        /<(r[bt]).*>(\S+)<\/r[bt]><(r[bt]).*>(\S+)<\/r[bt]>/,
-        '<$3>$2</$3><$1>$4</$1>'
-    );
+    let $this = $(this);
+    // switch the texts
+    let [rb, rt] = this.innerText.split('\n');
+    // rb will be underlined when rb is furigana
+    // 'rb' and 'rt' stand for 'ruby base' and 'ruby top' ?
+    $this.find('rb').text(rt).toggleClass(HTMLClass.Underline);
+    $this.find('rt').text(rb);
 }));
