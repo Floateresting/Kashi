@@ -81,11 +81,8 @@ ruby rt {
 }
 
 
-.kanji-on-furigana ruby {
-     padding: 0 10px;
-}
 
-.kanji-on-furigana rb {
+.underline {
      text-decoration: underline;
 }
 

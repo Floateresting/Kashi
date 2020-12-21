@@ -58,7 +58,7 @@ $.getJSON(dir + 'data.json').done(function (data) {
 $swith.on('click', () => $('ruby').each(function () {
     // switch <rb> and <rt> (only the tag names, not innerText)
     this.innerHTML = this.innerHTML.replace(
-        /(r[bt])(.+)(r[bt])(.+)(r[bt])(.+)(r[bt])/,
-        '$7$2$5$4$3$6$1'
+        /<(r[bt]).*>(\S+)<\/r[bt]><(r[bt]).*>(\S+)<\/r[bt]>/,
+        '<$3>$2</$3><$1>$4</$1>'
     );
 }));
