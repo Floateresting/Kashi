@@ -16,6 +16,11 @@ var toggles = {
 var dir = 'lyrics/';
 var $toc = $('#toc');
 var $lrc = $('#lrc');
+var $toggle = $('#toggle');
+var $switch = $('#switch');
+function init(o) {
+    return Object.keys(o)[0];
+}
 /**
  * create an <a> element for the table of contents
  * @param file path of the .lrc file
@@ -28,6 +33,9 @@ function toc(file, title) {
         .on('click', function () { return $.get(dir + file, function (l) { return lrc(l); }); });
 }
 function lrc(l) {
+    // reset buttons' symbols to default
+    $toggle.text(init(toggles));
+    $switch.text(init(switches));
     // create ruby
     l = l.replace(/([\u3005\u4e00-\u9faf]+)\(([\u3040-\u309f]+)\)/g, '<ruby><rb>$1</rb><rt>$2</rt></ruby>');
     $lrc.html(l);
@@ -41,16 +49,14 @@ $.getJSON(dir + 'data.json').done(function (data) {
         $toc.prepend(toc(file, title));
     }
 });
-$('#toggle')
-    .text(Object.keys(toggles)[0])
+$toggle.text(init(toggles))
     .on('click', function () {
     // switch the symbol
     this.innerText = toggles[this.innerText];
     // toggle rt's visibility
     $('rt').toggleClass(HTMLClass.Hidden);
 });
-$('#switch')
-    .text(Object.keys(switches)[0])
+$switch.text(init(switches))
     .on('click', function () {
     // switch the symbol
     this.innerText = switches[this.innerText];

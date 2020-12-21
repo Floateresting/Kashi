@@ -16,6 +16,12 @@ const toggles: { [id: string]: string; } = {
 let dir = 'lyrics/'
 let $toc = $('#toc');
 let $lrc = $('#lrc');
+let $toggle = $('#toggle');
+let $switch = $('#switch');
+
+function init(o: object) {
+    return Object.keys(o)[0];
+}
 
 /**
  * create an <a> element for the table of contents
@@ -30,6 +36,10 @@ function toc(file: string, title: string) {
 }
 
 function lrc(l: string) {
+    // reset buttons' symbols to default
+    $toggle.text(init(toggles));
+    $switch.text(init(switches));
+
     // create ruby
     l = l.replace(/([\u3005\u4e00-\u9faf]+)\(([\u3040-\u309f]+)\)/g,
         '<ruby><rb>$1</rb><rt>$2</rt></ruby>');
@@ -46,8 +56,7 @@ $.getJSON(dir + 'data.json').done(function (data) {
         $toc.prepend(toc(file, title as string));
 });
 
-$('#toggle')
-    .text(Object.keys(toggles)[0])
+$toggle.text(init(toggles))
     .on('click', function () {
         // switch the symbol
         this.innerText = toggles[this.innerText];
@@ -55,8 +64,7 @@ $('#toggle')
         $('rt').toggleClass(HTMLClass.Hidden);
     });
 
-$('#switch')
-    .text(Object.keys(switches)[0])
+$switch.text(init(switches))
     .on('click', function () {
         // switch the symbol
         this.innerText = switches[this.innerText];
