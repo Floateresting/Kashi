@@ -15,7 +15,7 @@ html {
 body {
      margin: 0px;
      font-size: 4em;
-     font-family: Kyokasho;
+     font-family: Ubuntu, Kyokasho;
 }
 
 
@@ -44,12 +44,12 @@ ruby rt {
 }
 
 
-#menu {
+#toc {
      white-space: nowrap;
      overflow: auto;
 }
 
-#menu a{
+#toc a{
      display: inline-block;
      color: white;
      text-align: center;
@@ -57,11 +57,11 @@ ruby rt {
      padding: 0.5em;
 }
 
-#menu a:hover{
+#toc a:hover{
      background-color: #222;
 }
 
-#lyric {
+#lrc {
      position: absolute;
      white-space: nowrap;
      background-color: var(--lrc-bg);

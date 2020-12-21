@@ -1,3 +1,5 @@
 # test scripts
 t[0-9].[tj]s
 *.bat
+
+node_modules
