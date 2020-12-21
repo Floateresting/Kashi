@@ -13,26 +13,27 @@ const toggles: { [id: string]: string; } = {
     'ー': '👁',
 }
 
-let dir = 'lyrics/'
+let path = 'lyrics/'
 let $toc = $('#toc');
 let $lrc = $('#lrc');
 let $toggle = $('#toggle');
 let $switch = $('#switch');
 
+/**
+ * get the first key of a dictionary/object
+ */
 function init(o: object) {
     return Object.keys(o)[0];
 }
 
 /**
  * create an <a> element for the table of contents
- * @param file path of the .lrc file
- * @param title title of the song
  */
-function toc(file: string, title: string) {
+function toc(file: string) {
     return $('<a></a>')
-        .attr('href', `#${title}`)
-        .text(title)
-        .on('click', () => $.get(dir + file, l => lrc(l)));
+        .attr('href', `#${file}`)
+        .text(file)
+        .on('click', () => $.get(path + file + '.txt', l => lrc(l)));
 }
 
 function lrc(l: string) {
@@ -41,19 +42,17 @@ function lrc(l: string) {
     $switch.text(init(switches));
 
     // create ruby
-    l = l.replace(/([\u3005\u4e00-\u9faf]+)\(([\u3040-\u309f]+)\)/g,
-        '<ruby><rb>$1</rb><rt>$2</rt></ruby>');
-
-    $lrc.html(l);
+    $lrc.html(l.replace(/([\u3005\u4e00-\u9faf]+)\(([\u3040-\u309f]+)\)/g,
+        '<ruby><rb>$1</rb><rt>$2</rt></ruby>'));
+    // hide/show rt when clicked
     $('ruby').on('click', function () {
         $(this).find('rt').toggleClass(HTMLClass.Hidden);
     });
 }
 
 
-$.getJSON(dir + 'data.json').done(function (data) {
-    for (const [file, title] of Object.entries(data))
-        $toc.prepend(toc(file, title as string));
+$.getJSON(path.replace('/', '.json')).done(function (data) {
+    (data as string[]).forEach(file => $toc.prepend(toc(file)));
 });
 
 $toggle.text(init(toggles))
