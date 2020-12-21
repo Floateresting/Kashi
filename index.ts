@@ -33,9 +33,21 @@ function toc(file: string) {
     return $('<a></a>')
         .attr('href', `#${file}`)
         .text(file)
-        .on('click', () => $.get(path + file + '.txt', l => lrc(l)));
+        .on('click', () => {
+            let lyric: string | null;
+            // if the lyric is in local storage
+            if (lyric = localStorage.getItem(file)) {
+                lrc(lyric!);
+            } else {
+                $.get(path + file + '.txt', l => localStorage.setItem(file, l))
+                    .done(l => lrc(l));
+            }
+        });
 }
 
+/**
+ * add lyrics to $lrc
+ */
 function lrc(l: string) {
     // reset buttons' symbols to default
     $toggle.text(init(toggles));

@@ -31,8 +31,21 @@ function toc(file) {
     return $('<a></a>')
         .attr('href', "#" + file)
         .text(file)
-        .on('click', function () { return $.get(path + file + '.txt', function (l) { return lrc(l); }); });
+        .on('click', function () {
+        var lyric;
+        // if the lyric is in local storage
+        if (lyric = localStorage.getItem(file)) {
+            lrc(lyric);
+        }
+        else {
+            $.get(path + file + '.txt', function (l) { return localStorage.setItem(file, l); })
+                .done(function (l) { return lrc(l); });
+        }
+    });
 }
+/**
+ * add lyrics to $lrc
+ */
 function lrc(l) {
     // reset buttons' symbols to default
     $toggle.text(init(toggles));
