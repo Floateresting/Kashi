@@ -4,16 +4,10 @@ enum HTMLClass {
     Hidden = 'hidden',
 }
 
-enum Mode {
-    Kanji = 'kanji',
-    Furigana = 'furigana',
-    KanjiFurigana = 'kanji-furigana',
-    FuriganaKanji = 'furigana-kanji',
-}
-
 let dir = 'lyrics/'
 let $toc = $('#toc');
 let $lrc = $('#lrc');
+let $swith = $('#switch');
 
 /**
  * create an <a> element for the table of contents
@@ -48,14 +42,23 @@ function lrc(l: string) {
     // create ruby
     l = l.replace(/([\u3005\u4e00-\u9faf]+)\(([\u3040-\u309f]+)\)/g,
         '<ruby><rb>$1</rb><rt>$2</rt></ruby>');
+
     $lrc.html(l);
     $('ruby').on('click', function () {
         $(this).find('rt').toggleClass(HTMLClass.Hidden);
     });
 }
 
-$.getJSON(dir + 'data.json')
-    .done(function (data) {
-        for (const [file, title] of Object.entries(data))
-            $toc.prepend(toc(file, title as string));
-    });
+
+$.getJSON(dir + 'data.json').done(function (data) {
+    for (const [file, title] of Object.entries(data))
+        $toc.prepend(toc(file, title as string));
+});
+
+$swith.on('click', () => $('ruby').each(function () {
+    // switch <rb> and <rt> (only the tag names, not innerText)
+    this.innerHTML = this.innerHTML.replace(
+        /(r[bt])(.+)(r[bt])(.+)(r[bt])(.+)(r[bt])/,
+        '$7$2$5$4$3$6$1'
+    );
+}));

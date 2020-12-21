@@ -5,16 +5,10 @@ var HTMLClass;
     HTMLClass["NoRT"] = "no-rt";
     HTMLClass["Hidden"] = "hidden";
 })(HTMLClass || (HTMLClass = {}));
-var Mode;
-(function (Mode) {
-    Mode["Kanji"] = "kanji";
-    Mode["Furigana"] = "furigana";
-    Mode["KanjiFurigana"] = "kanji-furigana";
-    Mode["FuriganaKanji"] = "furigana-kanji";
-})(Mode || (Mode = {}));
 var dir = 'lyrics/';
 var $toc = $('#toc');
 var $lrc = $('#lrc');
+var $swith = $('#switch');
 /**
  * create an <a> element for the table of contents
  * @param file path of the .lrc file
@@ -51,10 +45,13 @@ function lrc(l) {
         $(this).find('rt').toggleClass(HTMLClass.Hidden);
     });
 }
-$.getJSON(dir + 'data.json')
-    .done(function (data) {
+$.getJSON(dir + 'data.json').done(function (data) {
     for (var _i = 0, _a = Object.entries(data); _i < _a.length; _i++) {
         var _b = _a[_i], file = _b[0], title = _b[1];
         $toc.prepend(toc(file, title));
     }
 });
+$swith.on('click', function () { return $('ruby').each(function () {
+    // switch <rb> and <rt> (only the tag names, not innerText)
+    this.innerHTML = this.innerHTML.replace(/(r[bt])(.+)(r[bt])(.+)(r[bt])(.+)(r[bt])/, '$7$2$5$4$3$6$1');
+}); });
