@@ -2,12 +2,6 @@
      --lrc-bg: #181a1b;
 }
 
-@font-face { 
-      font-family: Kyokasho; 
-      src: url('UDDigiKyokashoN-R.ttf');
-} 
-
-
 html {
      background-color: #111;
 }
@@ -15,7 +9,6 @@ html {
 body {
      margin: 0px;
      font-size: 4em;
-     font-family: Ubuntu, Kyokasho;
 }
 
 
