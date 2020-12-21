@@ -51,9 +51,9 @@ function lrc(l: string) {
 }
 
 
-$.getJSON(path.replace('/', '.json')).done(function (data) {
-    (data as string[]).forEach(file => $toc.prepend(toc(file)));
-});
+$.getJSON(path.replace('/', '.json')).done(data =>
+    (data as string[]).forEach(file => $toc.prepend(toc(file)))
+);
 
 $toggle.text(init(toggles))
     .on('click', function () {

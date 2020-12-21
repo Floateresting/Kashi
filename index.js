@@ -45,7 +45,7 @@ function lrc(l) {
     });
 }
 $.getJSON(path.replace('/', '.json')).done(function (data) {
-    data.forEach(function (file) { return $toc.prepend(toc(file)); });
+    return data.forEach(function (file) { return $toc.prepend(toc(file)); });
 });
 $toggle.text(init(toggles))
     .on('click', function () {
