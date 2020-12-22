@@ -4,6 +4,8 @@ enum HTMLClass {
     Underline = 'underline',
 }
 
+//#region constants
+
 const switches: { [id: string]: string; } = {
     '⇅': '⇵',
     '⇵': '⇅',
@@ -12,12 +14,19 @@ const toggles: { [id: string]: string; } = {
     '👁': 'ー',
     'ー': '👁',
 }
+//#endregion constants
+
+//#region variables
 
 let path = 'lyrics/'
 let $toc = $('#toc');
 let $lrc = $('#lrc');
 let $toggle = $('#toggle');
 let $switch = $('#switch');
+
+//#endregion variables
+
+//#region functions
 
 /**
  * get the first key of a dictionary/object
@@ -62,6 +71,7 @@ function lrc(l: string) {
     });
 }
 
+//#endregion functions
 
 $.getJSON(path.replace('/', '.json')).done(data =>
     (data as string[]).forEach(file => $toc.prepend(toc(file)))

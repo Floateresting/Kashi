@@ -5,6 +5,7 @@ var HTMLClass;
     HTMLClass["Hidden"] = "hidden";
     HTMLClass["Underline"] = "underline";
 })(HTMLClass || (HTMLClass = {}));
+//#region constants
 var switches = {
     '⇅': '⇵',
     '⇵': '⇅',
@@ -13,11 +14,15 @@ var toggles = {
     '👁': 'ー',
     'ー': '👁',
 };
+//#endregion constants
+//#region variables
 var path = 'lyrics/';
 var $toc = $('#toc');
 var $lrc = $('#lrc');
 var $toggle = $('#toggle');
 var $switch = $('#switch');
+//#endregion variables
+//#region functions
 /**
  * get the first key of a dictionary/object
  */
@@ -57,6 +62,7 @@ function lrc(l) {
         $(this).find('rt').toggleClass(HTMLClass.Hidden);
     });
 }
+//#endregion functions
 $.getJSON(path.replace('/', '.json')).done(function (data) {
     return data.forEach(function (file) { return $toc.prepend(toc(file)); });
 });
