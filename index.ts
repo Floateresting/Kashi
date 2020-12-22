@@ -23,6 +23,7 @@ let $toc = $('#toc');
 let $lrc = $('#lrc');
 let $toggle = $('#toggle');
 let $switch = $('#switch');
+let selected: HTMLAnchorElement;
 
 //#endregion variables
 
@@ -35,21 +36,31 @@ function init(o: object) {
     return Object.keys(o)[0];
 }
 
+
 /**
  * create an <a> element for the table of contents
  */
-function toc(file: string) {
+function toc(title: string, file: string) {
     return $('<a></a>')
-        .attr('href', `#${file}`)
-        .text(file)
-        .on('click', () => {
+        .text(title)
+        .attr('href', '#' + title)
+        .on('click', async function (this: HTMLAnchorElement) {
+
             let lyric: string | null;
-            // if the lyric is in local storage
-            if (lyric = sessionStorage.getItem(file)) {
-                lrc(lyric!);
+            // if download lyric to storage if needed
+            if (!(lyric = sessionStorage.getItem(file))) {
+                await $.get(path + file, l => sessionStorage.setItem(file, l));
+            }
+            lyric = sessionStorage.getItem(file)!
+
+
+            if (this == selected) {
+                // download lyric file
+                window.open(path + file);
             } else {
-                $.get(path + file + '.lrc', l => sessionStorage.setItem(file, l.replace(/\[\d{2}:\d{2}.\d{2}\]/g, '')))
-                    .done(_ => lrc(sessionStorage.getItem(file)!));
+                // update ui
+                lrc(lyric.replace(/\[\d{2}:\d{2}.\d{2}\]/g, ''));
+                selected = this;
             }
         });
 }
@@ -74,7 +85,7 @@ function lrc(l: string) {
 //#endregion functions
 
 $.getJSON(path.replace('/', '.json')).done(data =>
-    (data as string[]).forEach(file => $toc.prepend(toc(file)))
+    Object.entries(data).forEach(a => $toc.prepend(toc(a[0], a[1] as string)))
 );
 
 $toggle.text(init(toggles))
