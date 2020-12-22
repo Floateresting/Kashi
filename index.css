@@ -78,6 +78,9 @@ ruby rt {
      user-select: none;
 }
 
+.control div{
+     display: inline;
+}
 
 .underline {
      text-decoration: underline;

@@ -11,8 +11,8 @@ const switches: { [id: string]: string; } = {
     '⇵': '⇅',
 }
 const toggles: { [id: string]: string; } = {
-    '👁': 'ー',
-    'ー': '👁',
+    'O': 'ー',
+    'ー': 'O',
 }
 //#endregion constants
 

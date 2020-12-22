@@ -11,8 +11,8 @@ var switches = {
     '⇵': '⇅',
 };
 var toggles = {
-    '👁': 'ー',
-    'ー': '👁',
+    'O': 'ー',
+    'ー': 'O',
 };
 //#endregion constants
 //#region variables
