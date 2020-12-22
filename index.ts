@@ -45,11 +45,11 @@ function toc(file: string) {
         .on('click', () => {
             let lyric: string | null;
             // if the lyric is in local storage
-            if (lyric = localStorage.getItem(file)) {
+            if (lyric = sessionStorage.getItem(file)) {
                 lrc(lyric!);
             } else {
-                $.get(path + file + '.txt', l => localStorage.setItem(file, l))
-                    .done(l => lrc(l));
+                $.get(path + file + '.lrc', l => sessionStorage.setItem(file, l.replace(/\[\d{2}:\d{2}.\d{2}\]/g, '')))
+                    .done(_ => lrc(sessionStorage.getItem(file)!));
             }
         });
 }
