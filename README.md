@@ -2,6 +2,6 @@
 List of my favorite Japanese songs
 https://floateresting.github.io/Kashi
 ### Features
- - Show kanji with furigana on top 
- - Show kanji-only by clicking the name of the current song on top
- - Switch the position of kanji and furigana by clicking the button at bottom-left
+- Click on `O` button to hide/show furigana
+- Click on `⇅` button to switch kanji and furigana positions
+- Download the `.lrc` file by clicking on the name of current song
