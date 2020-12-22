@@ -64,15 +64,13 @@ ruby rt {
      min-width: 100%;
 }
 
-#control{
+.control{
      position: fixed;
      color: dimgray;
-     right: 0px;
-     bottom: 0px;
+     right: 0;
      margin: 10px;
      user-select: none;
 }
-
 
 
 .underline {

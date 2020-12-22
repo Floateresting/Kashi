@@ -81,3 +81,4 @@ $switch.text(init(switches))
         $this.find('rt').text(rb);
     });
 });
+$('#to-top').on('click', function () { return window.scrollTo(0, 0); });
