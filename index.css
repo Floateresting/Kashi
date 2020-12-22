@@ -11,6 +11,7 @@ body {
      font-size: 4em;
 }
 
+/* #region ruby */
 
 ruby {
      margin-bottom: 0.55em;
@@ -36,6 +37,9 @@ ruby rt {
      font-size: 0.5em;
 }
 
+/* #endregion ruby */
+
+/* #region table of contents */
 
 #toc {
      white-space: nowrap;
@@ -53,6 +57,7 @@ ruby rt {
 #toc a:hover{
      background-color: #222;
 }
+/* #endregion table of contents */
 
 #lrc {
      position: absolute;
@@ -63,6 +68,7 @@ ruby rt {
      padding: 0.5em;
      min-width: 100%;
 }
+
 
 .control{
      position: fixed;
