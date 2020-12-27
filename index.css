@@ -14,22 +14,18 @@ body {
 /* #region ruby */
 
 ruby {
-     margin-bottom: 0.55em;
      display: inline-table;
      position: relative;
      vertical-align: bottom;
-     line-height: 2.6;
 }
 
 ruby rb {
      display: table-row;
      position: relative;
-     line-height: 1.2;
 }
 
 ruby rt {
      display: table-header-group;
-     line-height: 1.8;
      color: #999;
      white-space: nowrap;
      text-align: center;
@@ -64,8 +60,6 @@ ruby rt {
      white-space: nowrap;
      background-color: var(--lrc-bg);
      color: #c8c4bd;
-     line-height: 2.3;
-     padding: 0.5em;
      min-width: 100%;
 }
 
