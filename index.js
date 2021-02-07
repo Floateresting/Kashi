@@ -75,26 +75,16 @@ function toc(title, file) {
         .attr('href', '#' + title)
         .on('click', function () {
         return __awaiter(this, void 0, void 0, function () {
-            var lyric;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        if (!!(lyric = sessionStorage.getItem(file))) return [3 /*break*/, 2];
-                        return [4 /*yield*/, $.get(path + file, function (l) { return sessionStorage.setItem(file, l); })];
+                    case 0: 
+                    // get file
+                    return [4 /*yield*/, $.get(path + file, function (l) {
+                            lrc(l.replace(/\[\d{2}:\d{2}.\d{2}\]/g, ''));
+                        })];
                     case 1:
+                        // get file
                         _a.sent();
-                        _a.label = 2;
-                    case 2:
-                        lyric = sessionStorage.getItem(file);
-                        if (this == selected) {
-                            // download lyric file
-                            window.open(path + file);
-                        }
-                        else {
-                            // update ui
-                            lrc(lyric.replace(/\[\d{2}:\d{2}.\d{2}\]/g, ''));
-                            selected = this;
-                        }
                         return [2 /*return*/];
                 }
             });

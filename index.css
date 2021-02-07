@@ -1,36 +1,36 @@
 :root {
-     --lrc-bg: #181a1b;
+    --lrc-bg: #181a1b;
 }
 
 html {
-     background-color: #111;
+    background-color: #111;
 }
 
 body {
-     margin: 0px;
-     font-size: 4em;
+    margin: 0px;
+    font-size: 4em;
 }
 
 /* #region ruby */
 
 ruby {
-     display: inline-table;
-     position: relative;
-     vertical-align: bottom;
+    display: inline-table;
+    position: relative;
+    vertical-align: bottom;
 }
 
 ruby rb {
-     display: table-row;
-     position: relative;
+    display: table-row;
+    position: relative;
 }
 
 ruby rt {
-     display: table-header-group;
-     color: #999;
-     white-space: nowrap;
-     text-align: center;
-     letter-spacing: -0.001em;
-     font-size: 0.5em;
+    display: table-header-group;
+    color: #999;
+    white-space: nowrap;
+    text-align: center;
+    letter-spacing: -0.001em;
+    font-size: 0.5em;
 }
 
 /* #endregion ruby */
@@ -38,51 +38,48 @@ ruby rt {
 /* #region table of contents */
 
 #toc {
-     white-space: nowrap;
-     overflow: auto;
+    white-space: nowrap;
+    overflow: auto;
 }
 
-#toc a{
-     display: inline-block;
-     color: white;
-     text-align: center;
-     text-decoration: none;
-     padding: 0.5em;
+#toc a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 0.5em;
 }
 
-#toc a:hover{
-     background-color: #222;
+#toc a:hover {
+    background-color: #222;
 }
 /* #endregion table of contents */
 
 #lrc {
-     position: absolute;
-     white-space: nowrap;
-     background-color: var(--lrc-bg);
-     color: #c8c4bd;
-     min-width: 100%;
+    position: absolute;
+    white-space: nowrap;
+    background-color: var(--lrc-bg);
+    color: #c8c4bd;
+    min-width: 100%;
 }
 
-
-.control{
-     position: fixed;
-     color: dimgray;
-     right: 0;
-     margin: 10px;
-     user-select: none;
+.control {
+    position: fixed;
+    color: dimgray;
+    right: 0;
+    margin: 10px;
+    user-select: none;
 }
 
-.control div{
-     display: inline;
+.control div {
+    display: inline;
 }
 
 .underline {
-     text-decoration: underline;
+    text-decoration: underline;
 }
-
 
 .hidden {
-     color: var(--lrc-bg);
-     user-select: none;
+    color: var(--lrc-bg);
+    user-select: none;
 }
-
